@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaChevronDown, FaChevronRight, FaEdit } from "react-icons/fa";
+import { FaChevronDown, FaChevronRight } from "react-icons/fa";
 import EditableField from "./EditableField";
 
 function ProductItem({ product, onUpdate }) {
