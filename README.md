@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+# Product Management App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a React-based frontend application for managing a list of products with various attributes. The app provides a user-friendly interface to view, edit, and manage product information, including nested variants with support for inline editing.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the Application](#running-the-application)
+- [Components](#components)
+  - [ProductItem](#productitem)
+  - [EditableField](#editablefield)
+- [Usage](#usage)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Getting Started
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Follow these steps to set up and run the application on your local machine.
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Node.js](https://nodejs.org/) (version 14 or higher recommended)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clone the repository**:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   git clone https://github.com/bhargavtenali/fe-commerce.git
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-### `npm run eject`
+### Running the Application
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. **Start the development server**:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   npm start
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. **Open your browser**:
+   Go to `http://localhost:3000` to view the application.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Components
 
-## Learn More
+### ProductList
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The `ProductList` component is responsible for managing and rendering the list of products. It serves as a container for multiple `ProductItem` components, handling data structure and updates passed down to each item.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Props**:
 
-### Code Splitting
+- `products`: Array of product objects to display.
+- `onProductUpdate`: Function to handle updates to individual product items.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Key Methods**:
 
-### Analyzing the Bundle Size
+- `renderProducts`: Iterates over the `products` array to render each `ProductItem`, passing necessary props.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### ProductItem
 
-### Making a Progressive Web App
+The `ProductItem` component is responsible for rendering each product and its nested variants. This component includes logic to expand/collapse rows for primary and secondary variants and handles updates to product fields.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Props**:
 
-### Advanced Configuration
+- `product`: Object containing product information and variants.
+- `onUpdate`: Function to handle updates to the product data.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**Key Methods**:
 
-### Deployment
+- `handleToggleExpand`: Toggles the visibility of product details.
+- `handleToggleVariant`: Toggles the visibility of secondary variants.
+- `handleUpdate`: Updates product fields.
+- `handleVariantUpdate`: Updates primary variant fields.
+- `handleSecondaryVariantUpdate`: Updates secondary variant fields.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### EditableField
 
-### `npm run build` fails to minify
+The `EditableField` component allows inline editing of specific fields, like price and inventory. When clicked, it switches from a static display to an input field with options to save or cancel changes.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Props**:
+
+- `value`: The initial value to display and edit.
+- `onUpdate`: Callback to save the updated value.
+
+**Key Methods**:
+
+- `handleEdit`: Enables editing mode.
+- `handleCancel`: Cancels editing and reverts changes.
+- `handleSave`: Validates and saves the input value.
+
+## Usage
+
+1. **View Products**: The app displays a list of products in a table format. Each product row can be expanded to reveal variants.
+2. **Edit Fields**: Click on fields like price and inventory to edit them inline. Save or cancel changes as needed.
+3. **Expand/Collapse Variants**: Use the expand/collapse icons to view primary and secondary variants associated with each product.
